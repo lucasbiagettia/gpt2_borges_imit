@@ -1,7 +1,7 @@
 import torch
 from transformers import pipeline
 
-generate_text = pipeline(model="databricks/dolly-v2-3b", torch_dtype=torch.bfloat16, trust_remote_code=True, device="cpu")
+generate_text = pipeline(model="PlanTL-GOB-ES/gpt2-base-bne", trust_remote_code=True, device="cpu")
 
 print("Modelo cargado")
 
