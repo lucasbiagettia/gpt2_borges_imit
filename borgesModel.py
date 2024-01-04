@@ -24,25 +24,26 @@ class BorgesModel:
         final_length = input_length + length
         if (final_length > 300):
             final_length = 300
+        if (final_length <25):
+            final_length = 25
 
         generated_text = self.model.generate(
             input_ids=input_ids,
             attention_mask=attention_mask,
-            max_length=final_length,
+            max_new_tokens =final_length,
             num_return_sequences=1,
             no_repeat_ngram_size=6,
             top_k=35,
             top_p=0.95,
             temperature=0.8,
             pad_token_id=50256,
-            do_sample=True
+            do_sample=True,
         )
 
 
 
-        final_generated_text = self.tokenizer.decode(generated_text[0], skip_special_tokens=False)
-        #return final_generated_text
-        return final_generated_text[len(input_text):]
+        final_generated_text = self.tokenizer.decode(generated_text[0], skip_special_tokens=True)
+        return final_generated_text
 
 
 
