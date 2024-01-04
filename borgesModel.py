@@ -1,5 +1,6 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch 
+import os
 
 class BorgesModel:
     _instance = None
@@ -7,8 +8,11 @@ class BorgesModel:
     def __new__(cls):
         if not cls._instance:
             cls._instance = super(BorgesModel, cls).__new__(cls)
-            # Inicialización del modelo y el tokenizer aquí
-            cls._instance.model_path = "model"
+
+            if os.path.exists("/model"):
+                cls._instance.model_path ="model"
+            else:
+                cls._instance.model_path = "lucasbiagettia/gpt2-base-borges"
             if torch.cuda.is_available():
                 device = torch.device("cuda")
             else:
