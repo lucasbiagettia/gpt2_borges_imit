@@ -9,9 +9,15 @@ class BorgesModel:
             cls._instance = super(BorgesModel, cls).__new__(cls)
             # Inicialización del modelo y el tokenizer aquí
             cls._instance.model_path = "model"
-            cls._instance.device = "cpu"
+            if torch.cuda.is_available():
+                device = torch.device("cuda")
+            else:
+                device = torch.device("cpu")
+
+            cls._instance.device = device
             cls._instance.tokenizer = AutoTokenizer.from_pretrained(cls._instance.model_path)
             cls._instance.model = AutoModelForCausalLM.from_pretrained(cls._instance.model_path)
+            cls._instance.model.to(device)
         return cls._instance
 
 
