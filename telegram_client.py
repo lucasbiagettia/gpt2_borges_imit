@@ -2,7 +2,7 @@ from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from borges_game import BorgesGame
 #import game
-TOKEN = '6868397912:AAFMHOk_VDLQUpKCNoYBtw0MO7jo1ofDJwI'
+TOKEN = 'your_token'
 borges_game = None
 
 
