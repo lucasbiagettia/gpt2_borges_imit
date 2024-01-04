@@ -1,18 +1,18 @@
-import torch
-from transformers import pipeline
+import textwrap
+from borgesModel import BorgesModel
 
-generate_text = pipeline(model="PlanTL-GOB-ES/gpt2-base-bne", trust_remote_code=True, device="cpu")
+borges_model = BorgesModel()
 
-print("Modelo cargado")
+input = "Empieza desde aqui"
 
-res = generate_text("Explain to me the difference between nuclear fission and fusion.")
-print(res[0]["generated_text"])
+text = borges_model.generate(input)
 
-prompt = "nada"
 
-while res != "fin":
-  prompt = input("Ingrese un número: ")
-  res = generate_text(prompt)
-  print(res[0]["generated_text"])
+max_lenght = 70
 
-print("fin")
+# Usar textwrap para dividir el string en líneas
+lines = textwrap.wrap(text, width=max_lenght)
+
+# Imprimir cada línea
+for line in lines:
+    print(line)
