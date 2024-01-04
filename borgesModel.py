@@ -24,8 +24,8 @@ class BorgesModel:
         final_length = input_length + length
         if (final_length > 300):
             final_length = 300
-        if (final_length <25):
-            final_length = 25
+        if (final_length <15):
+            final_length = 15
 
         generated_text = self.model.generate(
             input_ids=input_ids,
