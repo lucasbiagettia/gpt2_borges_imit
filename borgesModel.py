@@ -1,13 +1,12 @@
 from transformers import AutoTokenizer, AutoModelForCausalLM
 import torch 
-import textwrap
 
-class SingletonModel:
+class BorgesModel:
     _instance = None
 
     def __new__(cls):
         if not cls._instance:
-            cls._instance = super(SingletonModel, cls).__new__(cls)
+            cls._instance = super(BorgesModel, cls).__new__(cls)
             # Inicialización del modelo y el tokenizer aquí
             cls._instance.model_path = "model"
             cls._instance.device = "cpu"
@@ -16,33 +15,34 @@ class SingletonModel:
         return cls._instance
 
 
-    def generate(self, input_text):
+    def generate(self, input_text, length):
         input_ids = self.tokenizer.encode(input_text, return_tensors="pt").to(self.device)
         attention_mask = torch.ones(input_ids.shape, dtype=torch.long).to(self.device)
+        length = int(length)
+        words = input_text.split()
+        input_length = len(words)
+        final_length = input_length + length
+        if (final_length > 300):
+            final_length = 300
 
         generated_text = self.model.generate(
             input_ids=input_ids,
             attention_mask=attention_mask,
-            max_length=150,
+            max_length=final_length,
             num_return_sequences=1,
-            no_repeat_ngram_size=4,
-            top_k=50,
+            no_repeat_ngram_size=6,
+            top_k=35,
             top_p=0.95,
-            temperature=0.2,
+            temperature=0.8,
             pad_token_id=50256,
             do_sample=True
         )
 
-        final_generated_text = self.tokenizer.decode(generated_text[0], skip_special_tokens=True)
-        return final_generated_text
 
 
-# Definir el ancho máximo de cada línea
-max_lenght = 70
+        final_generated_text = self.tokenizer.decode(generated_text[0], skip_special_tokens=False)
+        #return final_generated_text
+        return final_generated_text[len(input_text):]
 
-# Usar textwrap para dividir el string en líneas
-lines = textwrap.wrap(final_generated_text, width=max_lenght)
 
-# Imprimir cada línea
-for line in lines:
-    print(line)
+
