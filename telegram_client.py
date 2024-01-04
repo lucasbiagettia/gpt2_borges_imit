@@ -1,8 +1,11 @@
 from telegram import Update
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters, CallbackContext
 from borges_game import BorgesGame
-#import game
-TOKEN = 'your_token'
+import os
+
+
+TOKEN =  os.environ.get('BORGES_TELEGRAM_BOT_TOKEN')
+
 borges_game = None
 
 
