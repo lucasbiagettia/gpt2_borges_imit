@@ -8,23 +8,25 @@ class BorgesModel:
     def __new__(cls):
         if not cls._instance:
             cls._instance = super(BorgesModel, cls).__new__(cls)
+            current_dir = os.path.dirname(os.path.abspath(__file__))
+            model_dir = os.path.join(current_dir, "model")
 
-            if os.path.exists("/model"):
-                cls._instance.model_path ="model"
-                cls._instance.tokenizer = AutoTokenizer.from_pretrained(cls._instance.model_path)
-                cls._instance.model = AutoModelForCausalLM.from_pretrained(cls._instance.model_path)
+
+            if os.path.exists(model_dir):
+                cls._instance.model_path =model_dir
+                print("lo tenia")
             else:
-                os.mkdir("/model")
                 cls._instance.model_path = "lucasbiagettia/gpt2-base-borges"
-                cls._instance.tokenizer = AutoTokenizer.from_pretrained(cls._instance.model_path, cache_dir="/model")
-                cls._instance.model = AutoModelForCausalLM.from_pretrained(cls._instance.model_path, cache_dir="/model")
             if torch.cuda.is_available():
                 device = torch.device("cuda")
             else:
                 device = torch.device("cpu")
 
             cls._instance.device = device
+            cls._instance.tokenizer = AutoTokenizer.from_pretrained(cls._instance.model_path)
+            cls._instance.model = AutoModelForCausalLM.from_pretrained(cls._instance.model_path)
             cls._instance.model.to(device)
+
         return cls._instance
 
 

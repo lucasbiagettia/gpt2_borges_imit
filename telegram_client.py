@@ -11,8 +11,7 @@ borges_game = None
 def start(update: Update, context: CallbackContext) -> None:
     global borges_game 
     borges_game = BorgesGame()
-    update.message.reply_text('''Hola, soy un bot entrenado para imitar a Jorge Luis Borges y estás por empezar a escribir un texto conmigo:\n
-    Cuando quieras terminar de escribir sólo ingresa 'fin'\n''')
+    update.message.reply_text('''Hola, soy un bot entrenado para imitar a Jorge Luis Borges y estás por empezar a escribir un texto conmigo:\nCuando quieras terminar de escribir sólo ingresa 'fin'\n''')
 
 def echo(update: Update, context: CallbackContext) -> None:
     user_input = update.message.text
