@@ -11,16 +11,19 @@ class BorgesModel:
 
             if os.path.exists("/model"):
                 cls._instance.model_path ="model"
+                cls._instance.tokenizer = AutoTokenizer.from_pretrained(cls._instance.model_path)
+                cls._instance.model = AutoModelForCausalLM.from_pretrained(cls._instance.model_path)
             else:
+                os.mkdir("/model")
                 cls._instance.model_path = "lucasbiagettia/gpt2-base-borges"
+                cls._instance.tokenizer = AutoTokenizer.from_pretrained(cls._instance.model_path, cache_dir="/model")
+                cls._instance.model = AutoModelForCausalLM.from_pretrained(cls._instance.model_path, cache_dir="/model")
             if torch.cuda.is_available():
                 device = torch.device("cuda")
             else:
                 device = torch.device("cpu")
 
             cls._instance.device = device
-            cls._instance.tokenizer = AutoTokenizer.from_pretrained(cls._instance.model_path)
-            cls._instance.model = AutoModelForCausalLM.from_pretrained(cls._instance.model_path)
             cls._instance.model.to(device)
         return cls._instance
 
