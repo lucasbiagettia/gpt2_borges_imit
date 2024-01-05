@@ -5,7 +5,6 @@ import os
 
 
 TOKEN =  os.environ.get('BORGES_TELEGRAM_BOT_TOKEN')
-
 borges_game = None
 
 

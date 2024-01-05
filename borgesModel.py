@@ -28,14 +28,13 @@ class BorgesModel:
     def generate(self, input_text, length):
         input_ids = self.tokenizer.encode(input_text, return_tensors="pt").to(self.device)
         attention_mask = torch.ones(input_ids.shape, dtype=torch.long).to(self.device)
-        length = int(length)
-        words = input_text.split()
-        input_length = len(words)
-        final_length = input_length + length
+        final_length = int(length)
+
         if (final_length > 300):
             final_length = 300
         if (final_length <15):
             final_length = 15
+
 
         generated_text = self.model.generate(
             input_ids=input_ids,
