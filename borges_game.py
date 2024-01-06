@@ -38,3 +38,6 @@ class BorgesGame:
     def get_initial_message(self):
         return self.INITIAL_MESSAGE
     
+    def get_final_word(self):
+        return self.FINAL_WORD
+    
