@@ -6,6 +6,7 @@ class BorgesGame:
     FINAL_WORD = 'fin'
     INITIAL_MESSAGE = f'Hola, soy un bot entrenado para imitar a Jorge Luis Borges y estás por empezar a escribir un texto conmigo:\nCuando quieras terminar de escribir sólo ingresa {FINAL_WORD}\n'
     def __init__(self):
+        print("init")
         self.borges_model = BorgesModel()
 
     def get_total_text(self):
@@ -14,8 +15,9 @@ class BorgesGame:
     def predict(self, user_input):
         response = ''
         if user_input.lower() == self.FINAL_WORD:
-            response = "Nuestro texto quedó así: \n"
+            response = "Nuestro texto quedó así:\n"
             response = response + self.get_total_text()
+            print(response)
         else:
             self.total_text = self.total_text + user_input
             cutted_text = self.get_last_words(self.total_text, 200)
