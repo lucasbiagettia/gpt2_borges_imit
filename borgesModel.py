@@ -14,7 +14,6 @@ class BorgesModel:
 
             if os.path.exists(model_dir):
                 cls._instance.model_path =model_dir
-                print("lo tenia")
             else:
                 cls._instance.model_path = "lucasbiagettia/gpt2-base-borges"
             if torch.cuda.is_available():
