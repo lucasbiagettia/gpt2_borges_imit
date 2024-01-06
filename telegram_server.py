@@ -27,18 +27,13 @@ logger = logging.getLogger(__name__)
 async def start(update: Update, context: CallbackContext) -> None:
     global borges_game 
     borges_game = BorgesGame()
-    await update.message.reply_text('''Hola, soy un bot entrenado para imitar a Jorge Luis Borges y estás por empezar a escribir un texto conmigo:\nCuando quieras terminar de escribir sólo ingresa 'fin'\n''')
+    await update.message.reply_text(borges_game.get_initial_message())
 
 
 
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     user_input = update.message.text
-    response = ''
-    if user_input.lower() == 'fin':
-        response = "Nuestro texto quedó así: \n"
-        response = response + borges_game.get_total_text()
-    else:
-        response = borges_game.predict(user_input)
+    response = borges_game.predict(user_input)
     await update.message.reply_text(response)
 
 
