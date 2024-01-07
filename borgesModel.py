@@ -57,6 +57,23 @@ class BorgesModel:
 
         final_generated_text = self.tokenizer.decode(generated_text[0], skip_special_tokens=True)
         return final_generated_text
+    
+    def generate_random(self):
+
+        generated_text = self.model.generate(
+            max_length=20,  # Ajusta esto según la longitud deseada del texto generado
+            num_return_sequences=1,
+            no_repeat_ngram_size=2,
+            top_k=50,
+            top_p=0.95,
+            temperature=0.8,
+            pad_token_id=50256,
+            do_sample=True,
+        )
+
+        final_generated_text = self.tokenizer.decode(generated_text[0], skip_special_tokens=True)
+        return final_generated_text
+
 
 
 

@@ -10,6 +10,14 @@ def start():
     print(borges_game.get_initial_message())
 
 def play():
+    response1 = borges_game.generate_random()
+    print(response1+'\n')
+
+    response1 = borges_game.generate_random()
+    print(response1+'\n')
+
+    response1 = borges_game.generate_random()
+    print(response1+'\n')
     user_input = input()
     while user_input.lower() != borges_game.get_final_word():
         response = borges_game.predict(user_input)
