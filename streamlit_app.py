@@ -8,6 +8,7 @@ if "chatbot" not in st.session_state:
 
 def reset_values():
     st.session_state.messages = []
+    st.session_state.chatbot.clean()
     print_all_messages(st.session_state.messages)
 
 def handle_chat_input(prompt):
