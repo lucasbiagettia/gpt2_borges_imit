@@ -48,7 +48,22 @@ def main():
         if st.sidebar.button("Reiniciar"):
             reset_values()
 
+        st.subheader("Estemos en contacto:")
 
+        linkedin_logo = "social_logos/LI-In-Bug.png"
+        st.image(linkedin_logo, width=16, use_column_width=False)
+        st.markdown(f"[@lucasbiagettia](https://www.linkedin.com/in/lucasbiagettia/)")
+
+        github_logo = "social_logos/github-mark.png"
+        st.image(github_logo, width=16, use_column_width=False)
+        st.markdown(f"[@lucasbiagettia](https://github.com/lucasbiagettia/)")
+
+        hugging_face_logo = "social_logos/hf-logo.png"
+        st.image(hugging_face_logo, width=16, use_column_width=False)
+        st.markdown(f"[@lucasbiagettia](https://huggingface.co/lucasbiagettia)")
+
+
+  
 
     print_all_messages(st.session_state.messages)
 
