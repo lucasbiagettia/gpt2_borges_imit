@@ -4,7 +4,7 @@ from borgesModel import BorgesModel
 class BorgesGame:
     total_text = ''
     FINAL_WORD = 'fin'
-    INITIAL_MESSAGE = 'Hola, soy un bot entrenado para imitar a Jorge Luis Borges y estás por empezar a escribir un texto conmigo:'
+    INITIAL_MESSAGE = 'Hola, soy un bot entrenado para emular el estilo de escritura de Jorge Luis Borges y estás por empezar a escribir un texto conmigo:'
     def __init__(self):
         self.borges_model = BorgesModel()
 
