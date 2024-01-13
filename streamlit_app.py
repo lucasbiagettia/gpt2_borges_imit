@@ -39,8 +39,8 @@ def print_all_messages(messages):
 def main():
     st.header(st.session_state.chatbot.get_initial_message())
 
-    if "messages" not in st.session_state:
-        st.session_state.messages = []
+    if "fullText" not in st.session_state:
+        st.session_state.fullText = []
     
     with st.sidebar:
         if st.sidebar.button("Finalizar"):
