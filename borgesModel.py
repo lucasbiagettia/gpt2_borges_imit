@@ -15,7 +15,7 @@ class BorgesModel:
             if os.path.exists(model_dir):
                 cls._instance.model_path =model_dir
             else:
-                cls._instance.model_path = "lucasbiagettia/gpt2-base-borges"
+                cls._instance.model_path = "lucasbiagettia/gpt-neo-borges"
             if torch.cuda.is_available():
                 device = torch.device("cuda")
             else:
@@ -61,7 +61,7 @@ class BorgesModel:
     def generate_random(self):
 
         generated_text = self.model.generate(
-            max_length=20,  # Ajusta esto según la longitud deseada del texto generado
+            max_length=20,
             num_return_sequences=1,
             no_repeat_ngram_size=2,
             top_k=50,
